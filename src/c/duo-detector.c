@@ -26,9 +26,9 @@ static void prv_window_load(Window *window) {
     s_y_position +=37;
   }
   // strncpy(s_buf_model, models[watch_info_get_model()], strlen(models[watch_info_get_model()]));
-  text_layer_set_text(s_list_text_layers[0], models[watch_info_get_model()]);
-  text_layer_set_text(s_list_text_layers[1], colors[watch_info_get_color()]);
-  text_layer_set_text(s_list_text_layers[2], platforms[PBL_PLATFORM_TYPE_CURRENT]);
+  text_layer_set_text(s_list_text_layers[0], (watch_info_get_model() >= (sizeof(models) / sizeof(models[0]))) ? "Model out of bounds" : models[watch_info_get_model()]);
+  text_layer_set_text(s_list_text_layers[1], (watch_info_get_color() >= (sizeof(colors) / sizeof(colors[0]))) ? "Color out of bounds" : colors[watch_info_get_color()]);
+  text_layer_set_text(s_list_text_layers[2], (PBL_PLATFORM_TYPE_CURRENT >= sizeof(platforms)) ? "Undefined" : platforms[PBL_PLATFORM_TYPE_CURRENT]);
 }
 
 static void prv_window_unload(Window *window) {
