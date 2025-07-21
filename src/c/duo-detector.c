@@ -26,8 +26,8 @@ static void prv_window_load(Window *window) {
     s_y_position +=37;
   }
   // strncpy(s_buf_model, models[watch_info_get_model()], strlen(models[watch_info_get_model()]));
-  text_layer_set_text(s_list_text_layers[0], (watch_info_get_model() >= (sizeof(models) / sizeof(models[0]))) ? "Model out of bounds" : models[watch_info_get_model()]);
-  text_layer_set_text(s_list_text_layers[1], (watch_info_get_color() >= (sizeof(colors) / sizeof(colors[0]))) ? "Color out of bounds" : colors[watch_info_get_color()]);
+  text_layer_set_text(s_list_text_layers[0], watch_info_get_model() > WATCH_INFO_MODEL__MAX ? "Model unknown to SDK" : models[watch_info_get_model()]);
+  text_layer_set_text(s_list_text_layers[1], watch_info_get_color() > WATCH_INFO_COLOR__MAX ? "Color unknown to SDK" : colors[watch_info_get_color()]);
   text_layer_set_text(s_list_text_layers[2], (PBL_PLATFORM_TYPE_CURRENT >= sizeof(platforms)) ? "Undefined" : platforms[PBL_PLATFORM_TYPE_CURRENT]);
 }
 
